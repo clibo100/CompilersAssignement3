@@ -170,7 +170,7 @@ inferTypeExp env (EString _) = do
     return Type_string
 inferTypeExp env (EId _) = do
     return Type_string
-inferTypeExp env (EApp [e]) = do
+inferTypeExp env (EApp _ [e]) = do
     ty <- inferTypeExp env e
     forM_ [e] $ \i -> do
         checkExp env e
