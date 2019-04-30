@@ -155,50 +155,50 @@ checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 
 --infer type takes in an expression and an environemnt and returns the inferred type of the expression
 inferTypeExp :: Env -> Exp -> Err Type
-inferTypeExp env (ETrue) = 
+inferTypeExp env (ETrue) = do
     i <- lookupvar --?
     return Type_true
-inferTypeExp env (EFalse _) = 
+inferTypeExp env (EFalse _) = do
     return Type_false
-inferTypeExp env (EInt _) = 
+inferTypeExp env (EInt _) = do
     return Type_int
-inferTypeExp env (EDouble _) = 
+inferTypeExp env (EDouble _) = do
     return Type_double
-inferTypeExp env (EString _) = 
+inferTypeExp env (EString _) = do
     return Type_string
-inferTypeExp env (EId _) = 
+inferTypeExp env (EId _) = do
     return Type_string
-inferTypeExp env (EPIncr e) = 
+inferTypeExp env (EPIncr e) = do 
     inferTypeExp env e
-inferTypeExp env (EPDecr e) = 
+inferTypeExp env (EPDecr e) = do
     inferTypeExp env e
-inferTypeExp env (EIncr e) = 
+inferTypeExp env (EIncr e) = do
     inferTypeExp env e
-inferTypeExp env (EDecr e) = 
+inferTypeExp env (EDecr e) = do
     inferTypeExp env e
-inferTypeExp env (ETimes e1 e2) = 
+inferTypeExp env (ETimes e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (EDiv e1 e2) = 
+inferTypeExp env (EDiv e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (EPlus e1 e2) = 
+inferTypeExp env (EPlus e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (EMinus e1 e2) =
+inferTypeExp env (EMinus e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (ELt e1 e2) =
+inferTypeExp env (ELt e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (EGt e1 e2) =
+inferTypeExp env (EGt e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (ELtEq e1 e2) =
+inferTypeExp env (ELtEq e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (EGtEq e1 e2) =
+inferTypeExp env (EGtEq e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
-inferTypeExp env (EEq e1 e2) =
+inferTypeExp env (EEq e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_true,Type_false,Type_id]) e1 [e2]
-inferTypeExp env (ENEq e1 e2) =
+inferTypeExp env (ENEq e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_true,Type_false,Type_id]) e1 [e2]
-inferTypeExp env (EAnd e1 e2) = 
+inferTypeExp env (EAnd e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_true, Type_false]) e1 [e2]
-inferTypeExp env (EOr e1 e2) = 
+inferTypeExp env (EOr e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_true, Type_false]) e1 [e2]
 inferTypeExp env (EAss e1 e2) = do
     ty <- inferTypeExp env e1
