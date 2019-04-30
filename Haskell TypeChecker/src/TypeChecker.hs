@@ -155,9 +155,9 @@ checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 
 --infer type takes in an expression and an environemnt and returns the inferred type of the expression
 inferTypeExp :: Env -> Exp -> Err Type
-inferTypeExp env (ETrue) = do
-    i <- lookupvar --?
-    return Type_true
+inferTypeExp env (ETrue _) = do
+    --i <- lookupvar
+    return i
 inferTypeExp env (EFalse _) = do
     return Type_false
 inferTypeExp env (EInt _) = do
