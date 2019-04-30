@@ -171,7 +171,7 @@ inferTypeExp env (EString _) = do
 inferTypeExp env (EId _) = do
     return Type_string
 inferTypeExp env (EApp _ es) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_bool]) (head es) es
+    return Type_bool
 inferTypeExp env (EPIncr e) = do 
     inferTypeExp env e
 inferTypeExp env (EPDecr e) = do
