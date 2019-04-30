@@ -171,9 +171,7 @@ inferTypeExp env (EString _) = do
 inferTypeExp env (EId _) = do
     return Type_string
 inferTypeExp env (EApp _ [e]) = do
-    ty <- inferTypeExp env e
-    forM_ [e] $ \i -> do
-        checkExp env e
+    return Type_bool
 inferTypeExp env (EPIncr e) = do 
     inferTypeExp env e
 inferTypeExp env (EPDecr e) = do
