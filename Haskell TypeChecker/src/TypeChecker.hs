@@ -158,7 +158,7 @@ inferTypeExp :: Env -> Exp -> Err Type
 inferTypeExp env (ETrue) = do
     --i <- lookupvar
     return Type_true
-inferTypeExp env (EFalse _) = do
+inferTypeExp env (EFalse) = do
     return Type_false
 inferTypeExp env (EInt _) = do
     return Type_int
