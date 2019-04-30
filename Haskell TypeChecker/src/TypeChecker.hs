@@ -133,15 +133,21 @@ checkStm env (SWhile e s) ty = do
 	inferTypeExp env e
 	checkStm env s ty
 	return env
-checkStm env (SBlock s) ty = do -- TODO-??
-	checkStm env s
+checkStm env (SBlock s) ty = do
+	checkStms (newBlock env) stms ty
 	return env
 checkStm env (SIfElse e s1 s2) ty = do
 	inferTypeExp env e
 	checkStm env s1 ty
-	checkStm end s2 ty
+	checkStm env s2 ty
 	return env
 
+
+checkStms:: Env -> [Stm] ->Type -> Err Env
+checkStm env stms ty = case stms of
+	stm:stms -> do env' <- checkStm env stm ty
+		checkStms env' stms ty
+		[] ->return env
 {-
 Here need to go the missing cases. Once you have all cases you can delete the next line which is only needed to catch all cases that are not yet implemented.
 -}
@@ -149,7 +155,8 @@ checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 
 --infer type takes in an expression and an environemnt and returns the inferred type of the expression
 inferTypeExp :: Env -> Exp -> Err Type
-inferTypeExp env (ETrue _) = 
+inferTypeExp env (ETrue) = 
+	i <- lookupvar --?
 	return Type_true
 inferTypeExp env (EFalse _) = 
 	return Type_false
