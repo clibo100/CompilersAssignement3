@@ -126,28 +126,28 @@ checkStm env (SReturn e) ty = do
     checkExp env e ty
     return env
 checkStm env (SInit ty' id e) ty = do
-	foldM(\e i -> insertVar e i ty') env id
+    foldM(\e i -> insertVar e i ty') env id
 checkStm env (SReturnVoid) ty = do
-	return env
+    return env
 checkStm env (SWhile e s) ty = do
-	inferTypeExp env e
-	checkStm env s ty
-	return env
+    inferTypeExp env e
+    checkStm env s ty
+    return env
 checkStm env (SBlock s) ty = do
-	checkStms (newBlock env) stms ty
-	return env
+    checkStms (newBlock env) stms ty
+    return env
 checkStm env (SIfElse e s1 s2) ty = do
-	inferTypeExp env e
-	checkStm env s1 ty
-	checkStm env s2 ty
-	return env
+    inferTypeExp env e
+    checkStm env s1 ty
+    checkStm env s2 ty
+    return env
 
 
 checkStms:: Env -> [Stm] ->Type -> Err Env
 checkStm env stms ty = case stms of
-	stm:stms -> do env' <- checkStm env stm ty
-		checkStms env' stms ty
-		[] ->return env
+    stm:stms -> do env' <- checkStm env stm ty
+        checkStms env' stms ty
+        [] ->return env
 {-
 Here need to go the missing cases. Once you have all cases you can delete the next line which is only needed to catch all cases that are not yet implemented.
 -}
@@ -156,26 +156,26 @@ checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 --infer type takes in an expression and an environemnt and returns the inferred type of the expression
 inferTypeExp :: Env -> Exp -> Err Type
 inferTypeExp env (ETrue) = 
-	i <- lookupvar --?
-	return Type_true
+    i <- lookupvar --?
+    return Type_true
 inferTypeExp env (EFalse _) = 
-	return Type_false
+    return Type_false
 inferTypeExp env (EInt _) = 
-	return Type_int
+    return Type_int
 inferTypeExp env (EDouble _) = 
-	return Type_double
+    return Type_double
 inferTypeExp env (EString _) = 
-	return Type_string
+    return Type_string
 inferTypeExp env (EId _) = 
-	return Type_string
+    return Type_string
 inferTypeExp env (EPIncr e) = 
-	inferTypeExp env e
+    inferTypeExp env e
 inferTypeExp env (EPDecr e) = 
-	inferTypeExp env e
+    inferTypeExp env e
 inferTypeExp env (EIncr e) = 
-	inferTypeExp env e
+    inferTypeExp env e
 inferTypeExp env (EDecr e) = 
-	inferTypeExp env e
+    inferTypeExp env e
 inferTypeExp env (ETimes e1 e2) = 
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (EDiv e1 e2) = 
@@ -183,23 +183,23 @@ inferTypeExp env (EDiv e1 e2) =
 inferTypeExp env (EPlus e1 e2) = 
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (EMinus e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (ELt e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (EGt e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (ELtEq e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (EGtEq e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (EEq e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_true,Type_false,Type_id]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_true,Type_false,Type_id]) e1 [e2]
 inferTypeExp env (ENEq e1 e2) =
-	inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_true,Type_false,Type_id]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_true,Type_false,Type_id]) e1 [e2]
 inferTypeExp env (EAnd e1 e2) = 
-	inferTypeOverloadedExp env (Alternative [Type_true, Type_false]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_true, Type_false]) e1 [e2]
 inferTypeExp env (EOr e1 e2) = 
-	inferTypeOverloadedExp env (Alternative [Type_true, Type_false]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_true, Type_false]) e1 [e2]
 inferTypeExp env (EAss e1 e2) = do
     ty <- inferTypeExp env e1
     checkExp env e2 ty
