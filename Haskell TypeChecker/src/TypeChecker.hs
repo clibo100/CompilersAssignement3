@@ -125,8 +125,10 @@ checkStm env (SDecls ty' ids) ty =
 checkStm env (SReturn e) ty = do
     checkExp env e ty
     return env
---checkStm env (SInit ty' id e) ty = do
---    foldM(\e i -> insertVar e i ty') env id
+checkStm env (SInit ty' id e) ty = do
+    --foldM(\e i -> insertVar e i ty') env id
+    insertVar env id ty
+    return env
 checkStm env (SReturnVoid) ty = do
     return env
 checkStm env (SWhile e s) ty = do
