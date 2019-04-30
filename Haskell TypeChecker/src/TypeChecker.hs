@@ -134,7 +134,7 @@ checkStm env (SWhile e s) ty = do
     checkStm env s ty
     return env
 checkStm env (SBlock s) ty = do
-    checkStms (newBlock env) stms ty
+    --checkStms (newBlock env) stms ty
     return env
 checkStm env (SIfElse e s1 s2) ty = do
     inferTypeExp env e
@@ -157,9 +157,9 @@ checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 inferTypeExp :: Env -> Exp -> Err Type
 inferTypeExp env (ETrue) = do
     --i <- lookupvar
-    return Type_true
+    return Type_bool
 inferTypeExp env (EFalse) = do
-    return Type_false
+    return Type_bool
 inferTypeExp env (EInt _) = do
     return Type_int
 inferTypeExp env (EDouble _) = do
