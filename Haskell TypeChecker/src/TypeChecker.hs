@@ -129,7 +129,7 @@ checkStm env (SInit ty' id e) ty = do
     --foldM(\e i -> insertVar e i ty') env id
     insertVar env id ty
     i <- inferTypeExp env id
-    unless (i /= ty)
+    if i == ty
         return env
 checkStm env (SReturnVoid) ty = do
     return env
