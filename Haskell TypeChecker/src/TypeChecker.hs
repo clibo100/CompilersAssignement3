@@ -168,8 +168,8 @@ inferTypeExp env (EDouble _) = do
     return Type_double
 inferTypeExp env (EString _) = do
     return Type_string
-inferTypeExp env (EId _) = do
-    i <- lookupVar _ env 
+inferTypeExp env (EId id) = do
+    i <- lookupVar id env 
     return i
 inferTypeExp env (EApp _ es) = do
     return Type_bool
