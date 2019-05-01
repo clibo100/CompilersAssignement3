@@ -130,7 +130,7 @@ checkStm env (SInit ty' id e) ty = do
     insertVar env id ty
     i <- inferTypeExp env id
     if i == ty
-        return env
+        then return env
 checkStm env (SReturnVoid) ty = do
     return env
 checkStm env (SWhile e s) ty = do
