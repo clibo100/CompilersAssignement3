@@ -126,11 +126,8 @@ checkStm env (SReturn e) ty = do
     checkExp env e ty
     return env
 checkStm env (SInit ty' id e) ty = do
-    --foldM(\e i -> insertVar e i ty') env id
-    insertVar env id ty
-    i <- inferTypeExp env id
-    if i == ty
-        then return env
+    foldM(\e i -> insertVar e i ty') env id
+    --insertVar env id ty
 checkStm env (SReturnVoid) ty = do
     return env
 checkStm env (SWhile e s) ty = do
