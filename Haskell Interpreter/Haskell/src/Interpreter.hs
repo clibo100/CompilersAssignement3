@@ -9,7 +9,7 @@ import PrintCPP
 import Data.Map ( Map )
 import qualified Data.Map as M
 import Control.Monad.State ( MonadState, StateT, get, put, modify, foldM, liftIO, lift )
-import Control.Monad ( whileM_ )
+import Control.Monad.Loops ( whileM_ )
 
 
 data Value = VInt Integer
