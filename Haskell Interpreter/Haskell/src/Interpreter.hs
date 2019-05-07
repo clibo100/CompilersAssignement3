@@ -181,8 +181,7 @@ evalStm (SIfElse e stm1 stm2) = do
     if v == VTrue then evalStm stm1
     else evalStm stm2
     return Nothing
-evalStm stm = 
-    fail $ "Missing case in evalStm " ++ printTree stm ++ "\n"
+--evalStm stm = fail $ "Missing case in evalStm " ++ printTree stm ++ "\n"
 
 evalExp :: Interpreter i => Exp -> i Value
 evalExp ETrue = return VTrue
