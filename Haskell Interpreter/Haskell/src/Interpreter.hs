@@ -162,8 +162,8 @@ evalStm (SExp e) = do
 evalStm (SDecls _ ids) = do
     mapM (\i -> extendContext i VUndefined) ids
     return Nothing
-evalStm (SInit _ i e) = do
-    extendContext i e -- ? Maybe wrong
+evalStm (SInit _ i e) = dos
+    extendContext i $ evalExp e -- ? Maybe wrong
     return Nothing
 evalStm SReturnVoid = return Nothing
 evalStm (SReturn e) = do
