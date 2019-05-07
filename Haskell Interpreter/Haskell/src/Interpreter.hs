@@ -258,7 +258,9 @@ evalExp (EGt e1 e2)    = applyFun gtValue e1 e2
 evalExp (EEq e1 e2)    = do
     if (e1 == e2) then return VTrue
     else return VFalse
---evalExp (ENEq e1 e2) =
+evalExp (ENEq e1 e2) = do
+    if (e1 /= e2) then return VTrue
+    else return VFalse
 --evalExp (EAnd e1 e2) = 
 --evalExp (EOr e1 e2) = 
 --evalExp (EAss (EId i) e) = 
