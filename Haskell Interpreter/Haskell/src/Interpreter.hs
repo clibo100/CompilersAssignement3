@@ -253,7 +253,10 @@ evalExp (EPlus e1 e2)  = applyFun addValue e1 e2
 evalExp (EMinus e1 e2) = applyFun subValue e1 e2
 evalExp (ELt e1 e2)    = applyFun ltValue e1 e2
 evalExp (EGt e1 e2)    = applyFun gtValue e1 e2
---evalExp (ELtEq e1 e2)  = 
+evalExp (ELtEq e1 e2)  = do
+    v <- applyFun ltValue e1 e2
+    if ((e1 == e2 || v)) then return VTrue
+    else return VFalse
 --evalExp (EGtEq e1 e2)  = 
 evalExp (EEq e1 e2)    = do
     if (e1 == e2) then return VTrue
