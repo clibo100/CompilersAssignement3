@@ -255,7 +255,7 @@ evalExp (EGt e1 e2)    = applyFun gtValue e1 e2
 --evalExp (EAss (EId i) e) = 
 --evalExp (EAss _ _) = 
 --evalExp (ETyped e _) = 
---evalExp e = fail $ "Missing case in evalExp." ++ printTree e ++ "\n"
+evalExp e = fail $ "Missing case in evalExp." ++ printTree e ++ "\n"
 
 
 applyFun :: Interpreter i => (Value -> Value -> i Value) -> Exp -> Exp -> i Value
