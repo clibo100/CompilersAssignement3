@@ -170,11 +170,9 @@ evalStm SReturnVoid = return Nothing
 evalStm (SReturn e) = do
     v <- evalExp e
     return $ Just v
-
 evalStm (SBlock stms) = pushPop $ evalStms stms
-{-
-evalStm (SWhile e stm) = 
--}
+evalStm (SWhile e stm) = do 
+    until (evalExp e == VFalse) evalStm stm
 evalStm (SIfElse e stm1 stm2) = do
     v <- evalExp e
     if v == VTrue then evalStm stm1
