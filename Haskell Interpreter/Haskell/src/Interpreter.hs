@@ -280,7 +280,7 @@ evalExp (EOr e1 e2) = do
 evalExp (EAss (EId i) e) = do
     v <- evalExp e
     extendContext i v
-    return V
+    return VVoid
 evalExp (EAss _ _) = fail $ "dont do this"
 --evalExp (ETyped e _) = 
 evalExp e = fail $ "Missing case in evalExp." ++ printTree e ++ "\n"
