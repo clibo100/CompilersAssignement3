@@ -223,19 +223,19 @@ evalExp (EPIncr e@(EId i)) = do
     return val
 evalExp (EPIncr e) = fail $ "Expected " ++ printTree e ++ " to be an id."
 evalExp (EPDecr e@(EId i)) = do
-	val <- evalExp e
+    val <- evalExp e
     val' <- subValue val (VInt 1)
     updateContext i val'
     return val
 evalExp (EPDecr e) = fail $ "Expected " ++ printTree e ++ " to be an id."
 evalExp (EIncr e@(EId i)) = do
-	val <- evalExp e
+    val <- evalExp e
     val' <- addValue val (VInt 1)
     updateContext i val'
     return val'
 evalExp (EIncr e) = fail $ "Expected " ++ printTree e ++ " to be an id."
 evalExp (EDecr e@(EId i)) = do
-	val <- evalExp e
+    val <- evalExp e
     val' <- subValue val (VInt 1)
     updateContext i val'
     return val'
