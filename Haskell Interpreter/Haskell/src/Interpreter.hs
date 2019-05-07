@@ -267,8 +267,10 @@ evalExp (EEq e1 e2)    = do
 evalExp (ENEq e1 e2) = do
     if (e1 /= e2) then return VTrue
     else return VFalse
-evalExp (EAnd e1 e2) = 
-    if (e1 == VTrue && e2 == VTrue) then return VTrue
+evalExp (EAnd e1 e2) = do
+    v1 <- evalExp e1
+    v2 <- evalExp e2
+    if (v1 == VTrue && v2 == VTrue) then return VTrue
     else return VFalse
 --evalExp (EOr e1 e2) = 
 --evalExp (EAss (EId i) e) = 
