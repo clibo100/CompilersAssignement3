@@ -257,7 +257,10 @@ evalExp (ELtEq e1 e2)  = do
     v <- applyFun ltValue e1 e2
     if ((e1 == e2 || v == VTrue)) then return VTrue
     else return VFalse
---evalExp (EGtEq e1 e2)  = 
+evalExp (EGtEq e1 e2)  = do
+    v <- applyFun gtValue e1 e2
+    if ((e1 == e2 || v == VTrue)) then return VTrue
+    else return VFalse
 evalExp (EEq e1 e2)    = do
     if (e1 == e2) then return VTrue
     else return VFalse
