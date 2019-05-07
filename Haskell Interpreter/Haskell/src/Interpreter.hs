@@ -281,7 +281,7 @@ evalExp (EAss (EId i) e) = do
     v <- evalExp e
     extendContext i v
     return VVoid
-evalExp (EAss _ _) = "Expected " ++ printTree e ++ " to be an id."
+evalExp (EAss _ _) = "dont do this"
 --evalExp (ETyped e _) = 
 evalExp e = fail $ "Missing case in evalExp." ++ printTree e ++ "\n"
 
