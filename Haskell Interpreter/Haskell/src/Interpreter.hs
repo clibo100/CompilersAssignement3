@@ -277,11 +277,11 @@ evalExp (EOr e1 e2) = do
     v2 <- evalExp e2
     if (v1 == VTrue || v2 == VTrue) then return VTrue
     else return VFalse
---evalExp (EAss (EId i) e) = do
---    v <- evalExp e
---    extendContext i v
---    return v
---evalExp (EAss _ _) = 
+evalExp (EAss (EId i) e) = do
+    v <- evalExp e
+    extendContext i v
+    return VVoid
+evalExp (EAss _ _) = "Expected " ++ printTree e ++ " to be an id."
 --evalExp (ETyped e _) = 
 evalExp e = fail $ "Missing case in evalExp." ++ printTree e ++ "\n"
 
