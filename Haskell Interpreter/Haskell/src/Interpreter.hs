@@ -228,13 +228,13 @@ evalExp (EPDecr e@(EId i)) = do
     updateContext i val'
     return val
 evalExp (EPDecr e) = fail $ "Expected " ++ printTree e ++ " to be an id."
-evalExp (EIncr e@(EId i)) = 
+evalExp (EIncr e@(EId i)) = do
 	val <- evalExp e
     val' <- addValue val (VInt 1)
     updateContext i val'
     return val'
 evalExp (EIncr e) = fail $ "Expected " ++ printTree e ++ " to be an id."
-evalExp (EDecr e@(EId i)) = 
+evalExp (EDecr e@(EId i)) = do
 	val <- evalExp e
     val' <- subValue val (VInt 1)
     updateContext i val'
