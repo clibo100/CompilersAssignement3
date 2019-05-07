@@ -239,7 +239,7 @@ evalExp (EDecr e@(EId i)) = do
     val' <- subValue val (VInt 1)
     updateContext i val'
     return val'
-evalExp (EDecr e) = ail $ "Expected " ++ printTree e ++ " to be an id."
+evalExp (EDecr e) = fail $ "Expected " ++ printTree e ++ " to be an id."
 evalExp (ETimes e1 e2) = applyFun mulValue e1 e2
 evalExp (EDiv e1 e2)   = applyFun divValue e1 e2
 evalExp (EPlus e1 e2)  = applyFun addValue e1 e2
