@@ -279,7 +279,7 @@ evalExp (EOr e1 e2) = do
     else return VFalse
 evalExp (EAss (EId i) e) = do
     v <- evalExp e
-    extendContext i v
+    updateContext i v
     return VVoid
 evalExp (EAss _ _) = fail $ "dont do this"
 --evalExp (ETyped e _) = 
