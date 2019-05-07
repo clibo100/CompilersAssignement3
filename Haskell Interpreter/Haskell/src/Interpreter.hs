@@ -172,8 +172,9 @@ evalStm (SReturn e) = do
 evalStm (SBlock stms) = pushPop $ evalStms stms
 evalStm (SWhile e stm) = do 
     v <- evalExp e
-    if v == VTrue then evalStm stm
---        evalStm (SWhile e stm)
+    if v == VTrue then do
+        evalStm stm
+        evalStm (SWhile e stm)
     else return Nothing
 evalStm (SIfElse e stm1 stm2) = do
     v <- evalExp e
