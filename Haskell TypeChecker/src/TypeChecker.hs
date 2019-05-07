@@ -126,8 +126,7 @@ checkStm env (SReturn e) ty = do
     checkExp env e ty
     return env
 checkStm env (SInit ty' id e) ty = do
-    foldM(\e i -> insertVar e i ty') env id
-    --insertVar env id ty
+    insertVar env id ty
 checkStm env (SReturnVoid) ty = do
     return env
 checkStm env (SWhile e s) ty = do
@@ -135,7 +134,7 @@ checkStm env (SWhile e s) ty = do
     checkStm env s ty
     return env
 checkStm env (SBlock s) ty = do
-    --checkStms (newBlock env) stms ty
+    checkStms (newBlock env) stms ty
     return env
 checkStm env (SIfElse e s1 s2) ty = do
     inferTypeExp env e
@@ -143,12 +142,11 @@ checkStm env (SIfElse e s1 s2) ty = do
     checkStm env s2 ty
     return env
 
-
---checkStms:: Env -> [Stm] ->Type -> Err Env
---checkStm env stms ty = case stms of
---    stm:stms -> do env' <- checkStm env stm ty
---        checkStms env' stms ty
---        [] ->return env
+checkStms:: Env -> [Stm] ->Type -> Err Env
+checkStm env stms ty = case stms of
+    stm:stms -> do env' <- checkStm env stm ty
+        checkStms env' stms ty
+        [] ->return env
 {-
 Here need to go the missing cases. Once you have all cases you can delete the next line which is only needed to catch all cases that are not yet implemented.
 -}
