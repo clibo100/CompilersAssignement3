@@ -173,11 +173,10 @@ evalStm (SReturn e) = do
     return $ Just v
 evalStm (SBlock stms) = pushPop $ evalStms stms
 evalStm (SWhile e stm) = do 
-    whileM_ (do
-        evalExp e
-        ) (do
-            evalStm stm)
-    return Nothing
+    v <- evalExp e
+    if v == VTrue then evalStm stm
+        evalStm (SWhile e stm)
+    else return Nothing
 evalStm (SIfElse e stm1 stm2) = do
     v <- evalExp e
     if v == VTrue then evalStm stm1
