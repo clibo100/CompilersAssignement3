@@ -189,7 +189,9 @@ evalExp EFalse = return VFalse
 evalExp (EInt i) = return $ VInt i
 evalExp (EDouble d) = return $ VDouble d
 --evalExp (EString _) = 
-evalExp (EId i) = return $ lookupContext i
+evalExp (EId i) = do
+    v <- lookupContext i
+    return v
 evalExp (EApp i exps) = do
     vals <- mapM evalExp exps
     case (i, vals) of
