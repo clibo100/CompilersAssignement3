@@ -144,8 +144,8 @@ checkStm env (SIfElse e s1 s2) ty = do
 checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 
 checkStms:: Env -> [Stm] ->Type -> Err Env
-checkStms [] = return env
-checkStms (stm:stms) = do
+checkStms env [] ty = return Nothing
+checkStms env (stm:stms) ty = do
     env' <- checkStm env stm ty
     checkStms env' stms ty
 
