@@ -1,6 +1,6 @@
 int main() {
   printInt(1);
-  printDouble(dfac(10.0));
+  printDouble(dfac(0.0));
   return 0 ;
 }
 
