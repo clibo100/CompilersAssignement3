@@ -1,3 +1,3 @@
-# CompilersAssignement3
+# CompilersAssignments
 
-assignment 3 for compiler construction by Sierra Clibourne
+assignments 3 & 4 for compiler construction by Sierra Clibourne
