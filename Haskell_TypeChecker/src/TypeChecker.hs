@@ -142,12 +142,12 @@ checkStm env (SIfElse e s1 s2) ty = do
     checkStm env s2 ty
     return env
 
--- checkStms:: Env -> [Stm] ->Type -> Err Env
--- checkStm env stms ty = case stms of
---    stm:stms -> do 
---        env' <- checkStm env stm ty
---        checkStms env' stms ty
---        [] ->return env
+checkStms:: Env -> [Stm] ->Type -> Err Env
+checkStms [] = return env
+checkStms (stm:stms) = do
+    env' <- checkStm env stm ty
+    checkStms env' stms ty
+    
 {-
 Here need to go the missing cases. Once you have all cases you can delete the next line which is only needed to catch all cases that are not yet implemented.
 -}
