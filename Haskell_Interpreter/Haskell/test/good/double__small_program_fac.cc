@@ -9,8 +9,8 @@ double dfac(double n)
   printInt(2);
   if (n != 0.0)
   {
-    dfac(n-1.0);
     printDouble(n);
+    dfac(n-1.0);
   }
   else
   {
