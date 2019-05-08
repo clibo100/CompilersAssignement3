@@ -141,17 +141,17 @@ checkStm env (SIfElse e s1 s2) ty = do
     checkStm env s1 ty
     checkStm env s2 ty
     return env
+checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 
 checkStms:: Env -> [Stm] ->Type -> Err Env
 checkStms [] = return env
 checkStms (stm:stms) = do
     env' <- checkStm env stm ty
     checkStms env' stms ty
-    
+
 {-
 Here need to go the missing cases. Once you have all cases you can delete the next line which is only needed to catch all cases that are not yet implemented.
 -}
-checkStm _ s _ = fail $ "Missing case in checkStm encountered:\n" ++ printTree s
 
 --infer type takes in an expression and an environemnt and returns the inferred type of the expression
 inferTypeExp :: Env -> Exp -> Err Type
