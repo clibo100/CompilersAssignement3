@@ -15,7 +15,7 @@ double dfac(double n)
   }
   else
   {
-    printInt(n);
+    printDouble(n);
     f = n * dfac(n-1.0);
   }
   return f ;
