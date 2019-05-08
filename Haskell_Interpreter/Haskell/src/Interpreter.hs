@@ -282,7 +282,8 @@ evalExp (EAss (EId i) e) = do
     updateContext i v
     return VVoid
 evalExp (EAss _ _) = fail $ "dont do this"
---evalExp (ETyped e _) = 
+evalExp (ETyped e _) = 
+	return VVoid
 evalExp e = fail $ "Missing case in evalExp." ++ printTree e ++ "\n"
 
 
