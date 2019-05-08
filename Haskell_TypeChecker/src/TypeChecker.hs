@@ -188,17 +188,17 @@ inferTypeExp env (EPlus e1 e2) = do
 inferTypeExp env (EMinus e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
 inferTypeExp env (ELt e1 e2) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (EGt e1 e2) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (ELtEq e1 e2) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (EGtEq e1 e2) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (EEq e1 e2) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_bool]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (ENEq e1 e2) = do
-    inferTypeOverloadedExp env (Alternative [Type_int,Type_double,Type_string,Type_bool]) e1 [e2]
+    inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (EAnd e1 e2) = do
     inferTypeOverloadedExp env (Alternative [Type_bool]) e1 [e2]
 inferTypeExp env (EOr e1 e2) = do
