@@ -5,10 +5,8 @@ int main() {
 
 double dfac(double n)
 {
-  double f ;
   if (n != 0.0)
-    
+    dfac(n-1.0)
   else
-    f = n * dfac(n-1.0);
-  return f ;
+    return f;
 }
