@@ -11,5 +11,5 @@ double dfac(double n)
     printDouble(n);
   }
   else
-    return f;
+    return n;
 }
