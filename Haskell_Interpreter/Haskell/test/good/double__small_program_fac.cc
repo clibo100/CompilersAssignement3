@@ -6,8 +6,10 @@ int main() {
 double dfac(double n)
 {
   if (n != 0.0)
+  {
     dfac(n-1.0);
     printDouble(n);
+  }
   else
     return f;
 }
