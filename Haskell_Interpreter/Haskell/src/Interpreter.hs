@@ -170,7 +170,6 @@ evalStm SReturnVoid = do
 evalStm (SReturn e) = do
     v <- evalExp e
     return $ Just v
-    pop
 evalStm (SBlock stms) = pushPop $ evalStms stms
 evalStm (SWhile e stm) = do 
     v <- evalExp e
