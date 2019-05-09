@@ -264,7 +264,7 @@ evalExp (EGtEq e1 e2)  = do
 evalExp (EEq e1 e2)    = do
     v1 <- evalExp e1
     v2 <- evalExp e2
-    if (e1 == e2) then return VTrue
+    if (v1 == v2) then return VTrue
     else return VFalse
 evalExp (ENEq e1 e2) = do
     v1 <- evalExp e1
