@@ -274,7 +274,9 @@ evalExp (ENEq e1 e2) = do
 evalExp (EAnd e1 e2) = do
     v1 <- evalExp e1
     v2 <- evalExp e2
-    if (v1 == VTrue && v2 == VTrue) then return VTrue
+    if (v1 == VTrue ) then do
+        if (v2 == VTrue) then return VTrue
+        else return VFalse
     else return VFalse
 evalExp (EOr e1 e2) = do
     v1 <- evalExp e1
