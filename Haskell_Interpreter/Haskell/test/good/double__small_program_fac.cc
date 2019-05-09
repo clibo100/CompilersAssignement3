@@ -8,14 +8,14 @@ double dfac(double n)
 {
   double f ;
   printInt(1);
-  if (n == 0.0)
+  if (n != 0.0)
   {
-    printInt(2);
+    printDouble(n);
+    dfac(n - 1.0);
   }
   else
   {
-    printDouble(n);
-    dfac (n - 1.0);
+    printInt(2);
   }
   return f ;
 }
