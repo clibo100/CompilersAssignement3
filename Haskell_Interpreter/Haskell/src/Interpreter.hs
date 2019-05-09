@@ -280,9 +280,11 @@ evalExp (EAnd e1 e2) = do
     else return VFalse
 evalExp (EOr e1 e2) = do
     v1 <- evalExp e1
-    v2 <- evalExp e2
-    if (v1 == VTrue || v2 == VTrue) then return VTrue
-    else return VFalse
+    if (v1 == VFalse) then do
+        v2 <- evalExp e2
+        if (v2 == VTrue) then return VTrue
+        else return VFalse
+    else return VTrue
 evalExp (EAss (EId i) e) = do
     v <- evalExp e
     updateContext i v
