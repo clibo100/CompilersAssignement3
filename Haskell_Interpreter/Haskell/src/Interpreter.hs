@@ -273,8 +273,8 @@ evalExp (ENEq e1 e2) = do
     else return VFalse
 evalExp (EAnd e1 e2) = do
     v1 <- evalExp e1
-    v2 <- evalExp e2
     if (v1 == VTrue ) then do
+        v2 <- evalExp e2
         if (v2 == VTrue) then return VTrue
         else return VFalse
     else return VFalse
