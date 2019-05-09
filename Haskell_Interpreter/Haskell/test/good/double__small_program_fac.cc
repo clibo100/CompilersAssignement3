@@ -1,5 +1,14 @@
 int main() {
-  printInt(0);
+  double r ; // just to test blocks
+  {
+    int n = 10;
+    int r = 1;
+    while (n>0) {
+      r = r * n;
+      n = n - 1;
+    }
+    printInt(r);
+  }
   printDouble(dfac(10.0));
   return 0 ;
 }
@@ -7,15 +16,9 @@ int main() {
 double dfac(double n)
 {
   double f ;
-  printInt(1);
   if (n == 0.0)
-  {
-    printInt(2);
-  }
+    f = 1.0;
   else
-  {
-    printDouble(n);
-    dfac(n - 1.0);
-  }
+    f = n * dfac(n-1.0);
   return f ;
 }
