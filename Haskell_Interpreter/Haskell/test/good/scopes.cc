@@ -2,7 +2,7 @@
 int f() {
   int n = 2;
   if (n < 3) {
-    printint(100);
+    printInt(100);
     int n = 3;
     return n;
   } else { }
