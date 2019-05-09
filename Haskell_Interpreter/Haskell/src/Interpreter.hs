@@ -165,9 +165,11 @@ evalStm (SInit _ i e) = do
     v <- evalExp e
     extendContext i v
     return Nothing
-evalStm SReturnVoid = return Nothing
+evalStm SReturnVoid = do
+    return Nothing
 evalStm (SReturn e) = do
     v <- evalExp e
+    pop
     return $ Just v
 evalStm (SBlock stms) = pushPop $ evalStms stms
 evalStm (SWhile e stm) = do 
